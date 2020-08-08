@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fly.user.manage.mapper.SysAdminMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fly.user.manage.pojo.entity.SysAdmin">
+        <id column="user_id" property="userId" />
+        <result column="account" property="account" />
+        <result column="phone" property="phone" />
+        <result column="email" property="email" />
+        <result column="password" property="password" />
+        <result column="nick_name" property="nickName" />
+        <result column="avatar" property="avatar" />
+        <result column="user_name" property="userName" />
+        <result column="sex" property="sex" />
+        <result column="birthday" property="birthday" />
+        <result column="app_id" property="appId" />
+        <result column="create_time" property="createTime" />
+        <result column="create_user" property="createUser" />
+        <result column="update_time" property="updateTime" />
+        <result column="update_user" property="updateUser" />
+        <result column="is_locked" property="isLocked" />
+        <result column="del_flag" property="delFlag" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        user_id, account, phone, email, password, nick_name, avatar, user_name, sex, birthday, app_id, create_time, create_user, update_time, update_user, is_locked, del_flag
+    </sql>
+
+</mapper>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fly.user.manage.mapper.SysRoleMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fly.user.manage.pojo.entity.SysRole">
+        <id column="role_id" property="roleId" />
+        <result column="role_name" property="roleName" />
+        <result column="role_code" property="roleCode" />
+        <result column="role_desc" property="roleDesc" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="del_flag" property="delFlag" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        role_id, role_name, role_code, role_desc, create_time, update_time, del_flag
+    </sql>
+
+    <sql id="JOIN_Column_List">
+        sys_role.role_id, sys_role.role_name, sys_role.role_code, sys_role.role_desc, sys_role.create_time, sys_role.update_time, sys_role.del_flag
+    </sql>
+
+    <select id="getSysAdminRoles" resultMap="BaseResultMap">
+        select
+            <include refid="JOIN_Column_List" />
+        from sys_admin_role
+        left join sys_role
+        on sys_role.role_id=sys_admin_role.role_id
+        and sys_admin_role.user_id=#{userId}
+        and sys_role.del_flag=false
+    </select>
+
+
+</mapper>
