@@ -10,6 +10,7 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fly.user.common.dto.AuthInfo;
 import com.fly.user.common.dto.TokenInfo;
 import com.fly.user.common.enums.ResponseCode;
+import com.google.common.base.Charsets;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.util.StringUtils;
@@ -54,7 +55,7 @@ public class TokenUtil {
     /**
      * token签名secret key
      */
-    private static final byte[] SECRET = "MDk4ZjZiY2Q0NjIxYDM3M2NhXGU0ZTgzMjYyN2I0ZjY=".getBytes();
+    private static final byte[] SECRET = "MDk4ZjZiY2Q0NjIxYDM3M2NhXGU0ZTgzMjYyN2I0ZjY=".getBytes(Charsets.UTF_8);
 
 
     /**
@@ -90,10 +91,11 @@ public class TokenUtil {
 
     /**
      * 解析token信息
+     *
      * @param jwt jwt
      * @return authInfo
      */
-    public static AuthInfo parseToken(DecodedJWT jwt){
+    public static AuthInfo parseToken(DecodedJWT jwt) {
         Long userId = jwt.getClaim(TokenUtil.USER_ID).asLong();
         String roleCodes = jwt.getClaim(TokenUtil.ROLES).asString();
         String userType = jwt.getClaim(TokenUtil.USER_TYPE).asString();

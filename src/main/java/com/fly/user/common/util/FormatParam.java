@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 
 /**
  * Description: 格式化参数名
+ *
  * @author : free loop
  * @since : 2019-07-06
  */
@@ -28,14 +29,15 @@ public class FormatParam {
     }
 
     /**
-     *  驼峰转换成下划线参数对应表字段
+     * 驼峰转换成下划线参数对应表字段
+     *
      * @param source 源参数
      * @return map
      */
-    public static Map<Object, Object> toUnderline(Map<Object, Object> source){
+    public static Map<Object, Object> toUnderline(Map<Object, Object> source) {
         Map<Object, Object> dest = new HashMap<>();
-        for (Object key:source.keySet()) {
-            dest.put(toUnderline((String) key),source.get(key));
+        for (Map.Entry<Object, Object> entry : source.entrySet()) {
+            dest.put(toUnderline((String) entry.getKey()), entry.getValue());
         }
         return dest;
     }

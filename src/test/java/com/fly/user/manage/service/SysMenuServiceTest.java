@@ -30,7 +30,7 @@ public class SysMenuServiceTest {
         req.setPath("/index.html");
         req.setUrl("http://www.baidu.com");
         req.setIcon("test.png");
-        req.setParentId(0);
+        req.setParentId(0L);
         Assertions.assertTrue(sysMenuService.addSysMenu(req));
     }
 

@@ -9,5 +9,10 @@
       "name": "swagger.show",
       "type": "java.lang.String",
       "description": "Description for swagger.show."
+    },
+    {
+      "name": "token.expire.refresh",
+      "type": "java.lang.String",
+      "description": "Description for token.expire.refresh."
     }
   ] }

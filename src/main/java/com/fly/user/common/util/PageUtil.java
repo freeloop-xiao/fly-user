@@ -20,14 +20,13 @@ import java.util.Map;
 public class PageUtil {
 
 
-
-    public static <T> Page<T> page(PageRequest request){
-        Page<T> page = new Page<>(request.getPage(),request.getLimit());
-        if (StringUtils.hasText(request.getOrderAscBy())){
+    public static <T> Page<T> page(PageRequest request) {
+        Page<T> page = new Page<>(request.getPage(), request.getLimit());
+        if (StringUtils.hasText(request.getOrderAscBy())) {
             page.addOrder(OrderItem.desc(FormatParam.toUnderline(request.getOrderAscBy())));
-        }else if (StringUtils.hasText(request.getOrderDescBy())){
+        } else if (StringUtils.hasText(request.getOrderDescBy())) {
             page.addOrder(OrderItem.desc(FormatParam.toUnderline(request.getOrderDescBy())));
-        }else {
+        } else {
             page.addOrder(OrderItem.desc("create_time"));
         }
         return page;
@@ -42,11 +41,11 @@ public class PageUtil {
      */
     public static <T> QueryWrapper<T> mapToQueryWrapper(Map<Object, Object> map) {
         QueryWrapper<T> queryWrapper = new QueryWrapper<>();
-        if (map == null){
+        if (map == null) {
             return null;
         }
-        for (Object key : map.keySet()) {
-            queryWrapper.eq((String) key, map.get(key));
+        for (Map.Entry<Object, Object> entry : map.entrySet()) {
+            queryWrapper.eq((String) entry.getKey(), entry.getValue());
         }
         return queryWrapper;
     }
