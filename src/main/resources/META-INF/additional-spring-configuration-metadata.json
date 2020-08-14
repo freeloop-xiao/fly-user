@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "swagger.show",
+      "type": "java.lang.String",
+      "description": "Description for swagger.show."
+    },
+    {
+      "name": "swagger.show",
+      "type": "java.lang.String",
+      "description": "Description for swagger.show."
+    }
+  ] }

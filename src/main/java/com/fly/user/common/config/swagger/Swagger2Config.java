@@ -2,6 +2,7 @@ package com.fly.user.common.config.swagger;
 
 
 import com.google.common.base.Predicates;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.PathSelectors;
@@ -26,10 +27,14 @@ import java.util.List;
 @EnableSwagger2
 public class Swagger2Config {
 
+    @Value("${swagger.show}")
+    private boolean swaggerShow;
+
     @Bean
     public Docket api() {
-        return new Docket(DocumentationType.SWAGGER_2).
-                useDefaultResponseMessages(false)
+        return new Docket(DocumentationType.SWAGGER_2)
+                .enable(swaggerShow)
+                .useDefaultResponseMessages(false)
                 .select()
                 .apis(RequestHandlerSelectors.any())
                 // 错误路径不监控
