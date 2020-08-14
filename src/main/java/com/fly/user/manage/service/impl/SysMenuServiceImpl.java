@@ -60,6 +60,12 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
 
     @Override
     public boolean editSysMenu(SysMenu sysMenu) {
+        if (sysMenu.getParentId() != -1){
+            SysMenu parentMenu = getById(sysMenu.getParentId());
+            if (parentMenu == null){
+                ReportUtil.throwEx("父菜单不存在");
+            }
+        }
         return updateById(sysMenu);
     }
 

@@ -39,14 +39,14 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
         queryWrapper.eq("role_code", request.getRoleCode());
         SysRole sysRole = getOne(queryWrapper);
         if (sysRole != null) {
-            ReportUtil.throwEx("角色code意见存在!");
+            ReportUtil.throwEx("角色code存在!");
         }
 
         queryWrapper.clear();
         queryWrapper.eq("role_name", request.getRoleName());
         sysRole = getOne(queryWrapper);
         if (sysRole != null) {
-            ReportUtil.throwEx("该角色名称意见存在!");
+            ReportUtil.throwEx("该角色名称存在!");
         }
         sysRole = new SysRole();
         BeanUtils.copyProperties(request, sysRole);
@@ -69,7 +69,9 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
     @Override
     public Page<SysRole> page(PageRequest request) {
         Page<SysRole> page = PageUtil.page(request);
-        return page(page);
+        QueryWrapper<SysRole> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("del_flag",false);
+        return page(page,queryWrapper);
     }
 
     @Override

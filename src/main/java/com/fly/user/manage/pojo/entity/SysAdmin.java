@@ -3,6 +3,8 @@ package com.fly.user.manage.pojo.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
@@ -54,7 +56,7 @@ public class SysAdmin extends Model<SysAdmin> {
     private Integer sex;
 
     @ApiModelProperty(value = "出身日期yyyy-MM-dd")
-    private LocalDateTime birthday;
+    private LocalDate birthday;
 
     @ApiModelProperty(value = "系统标识")
     private String appId;

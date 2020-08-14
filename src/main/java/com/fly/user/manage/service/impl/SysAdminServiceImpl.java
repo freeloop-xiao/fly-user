@@ -1,5 +1,6 @@
 package com.fly.user.manage.service.impl;
 
+import cn.hutool.core.util.IdUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.fly.user.common.util.PageUtil;
@@ -53,8 +54,8 @@ public class SysAdminServiceImpl extends ServiceImpl<SysAdminMapper, SysAdmin> i
             ReportUtil.throwEx("该手机号用户已经存在");
         }
         BeanUtils.copyProperties(request, sysAdmin);
-        // todo
-        sysAdmin.setUserId(1L);
+        // 配置用户唯一id
+        sysAdmin.setUserId(IdUtil.getSnowflake(1L,1L).nextId());
         String password = bCryptPasswordEncoder.encode(request.getPassword());
         sysAdmin.setPassword(password);
         // 设置密码，保存用户信息
@@ -102,6 +103,10 @@ public class SysAdminServiceImpl extends ServiceImpl<SysAdminMapper, SysAdmin> i
 
         // 查询用户信息
         SysAdmin sysAdmin = getById(userId);
+        if (sysAdmin == null){
+            ReportUtil.throwEx("用户不存在");
+        }
+
         sysAdmin.setPassword(null);
         sysAdminVO.setSysAdmin(sysAdmin);
 

@@ -21,9 +21,12 @@
         menu_id, name, path, url, parent_id, icon, sort, create_time, update_time, del_flag
     </sql>
 
+    <sql id="JOIN_Column_List">
+        sys_menu.menu_id, sys_menu.name, sys_menu.path, sys_menu.url, sys_menu.parent_id, sys_menu.icon, sys_menu.sort, sys_menu.create_time, sys_menu.update_time, sys_menu.del_flag
+    </sql>
     <select id="getSysMenuByRoleId" resultMap="BaseResultMap">
         select
-        <include refid="Base_Column_List"></include>
+        <include refid="JOIN_Column_List"></include>
         from sys_role_menu
         left join sys_menu
         on sys_role_menu.menu_id=sys_menu.menu_id

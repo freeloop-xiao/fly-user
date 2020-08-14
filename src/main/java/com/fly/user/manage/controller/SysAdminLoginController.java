@@ -10,6 +10,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import javax.validation.Valid;
 
 /**
@@ -34,10 +35,18 @@ public class SysAdminLoginController extends BaseController {
         return new R<>(sysAdminLoginService.captcha());
     }
 
+
     @ApiOperation(value = "管理员登陆", notes = "管理员登陆")
     @PostMapping("/login")
     public R<TokenVO> login(@Valid @RequestBody SysAdminLoginRequest request) {
         return new R<>(sysAdminLoginService.login(request));
+    }
+
+    @ApiOperation(value = "管理员刷新token", notes = "管理员刷新token")
+    @PostMapping("/refresh")
+    public R<TokenVO> refresh(@RequestParam String refreshToken) {
+        // 刷新token
+        return new R<>(sysAdminLoginService.refresh(refreshToken));
     }
 
 }

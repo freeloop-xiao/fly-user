@@ -19,14 +19,14 @@ import javax.validation.constraints.NotNull;
 @ApiModel(value="菜单添加请求", description="菜单添加请求")
 public class SysMenuSaveRequest {
 
-    @NotEmpty(message = "菜单名称不能为空")
+    @NotNull(message = "菜单名称不能为空")
     @ApiModelProperty(value = "菜单名称")
     private String name;
 
     @ApiModelProperty(value = "图标")
     private String icon;
 
-    @NotEmpty(message = "前端path不能为空")
+    @NotNull(message = "前端path不能为空")
     @ApiModelProperty(value = "前端path")
     private String path;
 
@@ -35,7 +35,7 @@ public class SysMenuSaveRequest {
 
     @NotNull(message = "父菜单id不能为空")
     @ApiModelProperty(value = "父菜单ID")
-    private Integer parentId;
+    private Long parentId;
 
     @ApiModelProperty(value = "排序值")
     private Integer sort = 0;

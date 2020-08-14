@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
  */
 public class FormatParam {
 
-    public static final String MOBILE_PATTERN = "^[1][3,4,5,6,7,8,9][0-9]{9}$";
+    public static final String MOBILE_PATTERN = "[1][3,4,5,6,7,8,9][0-9]{9}";
 
     private static final Pattern HUMP_PATTERN = Pattern.compile("[A-Z]");
 

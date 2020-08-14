@@ -1,5 +1,6 @@
 package com.fly.user.manage.pojo.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fly.user.common.util.FormatParam;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -9,7 +10,7 @@ import lombok.EqualsAndHashCode;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 /**
  * @author free loop
@@ -18,7 +19,7 @@ import java.time.LocalDateTime;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@ApiModel(value="系统管理员添加请求", description="系统管理员添加请求")
+@ApiModel(value = "系统管理员添加请求", description = "系统管理员添加请求")
 public class SysAdminSaveRequest {
 
     @ApiModelProperty(value = "账号")
@@ -33,6 +34,8 @@ public class SysAdminSaveRequest {
     private String email;
 
     @NotEmpty(message = "密码不能为空")
+    @Pattern(regexp = "[0-9a-zA-Z]{6,30}",
+            message = "密码需要同时包含数字，字母，特殊符号")
     @ApiModelProperty(value = "用户密码")
     private String password;
 
@@ -49,7 +52,8 @@ public class SysAdminSaveRequest {
     private Integer sex;
 
     @ApiModelProperty(value = "出身日期yyyy-MM-dd")
-    private LocalDateTime birthday;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
+    private LocalDate birthday;
 
     @ApiModelProperty(value = "系统标识")
     private String appId;

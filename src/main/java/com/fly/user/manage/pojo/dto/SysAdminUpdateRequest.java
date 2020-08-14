@@ -1,5 +1,6 @@
 package com.fly.user.manage.pojo.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fly.user.common.util.FormatParam;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -7,9 +8,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 /**
  * @author free loop
@@ -48,7 +48,8 @@ public class SysAdminUpdateRequest {
     private Integer sex;
 
     @ApiModelProperty(value = "出身日期yyyy-MM-dd")
-    private LocalDateTime birthday;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
+    private LocalDate birthday;
 
     @ApiModelProperty(value = "系统标识")
     private String appId;

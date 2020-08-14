@@ -7,12 +7,15 @@ import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.auth0.jwt.impl.PublicClaims;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.fly.user.common.dto.AuthInfo;
 import com.fly.user.common.dto.TokenInfo;
 import com.fly.user.common.enums.ResponseCode;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.util.StringUtils;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author xiao kun
@@ -21,6 +24,16 @@ import java.util.Map;
  */
 
 public class TokenUtil {
+
+    /**
+     * admin token过期时间
+     */
+    public static final long ADMIN_ACCESS_EXPIRES = 604800000L;
+
+    /**
+     * admin 刷新token过期时间
+     */
+    public static final long ADMIN_REFRESH_EXPIRES = 606600000L;
 
 
     /**
@@ -72,6 +85,22 @@ public class TokenUtil {
                 .withIssuedAt(new Date())
                 .withExpiresAt(date)
                 .sign(algorithm);
+    }
+
+
+    /**
+     * 解析token信息
+     * @param jwt jwt
+     * @return authInfo
+     */
+    public static AuthInfo parseToken(DecodedJWT jwt){
+        Long userId = jwt.getClaim(TokenUtil.USER_ID).asLong();
+        String roleCodes = jwt.getClaim(TokenUtil.ROLES).asString();
+        String userType = jwt.getClaim(TokenUtil.USER_TYPE).asString();
+        String tokenType = jwt.getClaim(TokenUtil.TOKEN_TYPE).asString();
+        String clientId = jwt.getClaim(TokenUtil.CLIENT_ID).asString();
+        String uid = jwt.getClaim(PublicClaims.JWT_ID).asString();
+        return AuthInfo.createTokenInfo(userId, userType, tokenType, roleCodes, clientId, uid);
     }
 
     public static DecodedJWT verify(String token) {

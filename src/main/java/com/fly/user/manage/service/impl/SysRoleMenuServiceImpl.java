@@ -59,7 +59,7 @@ public class SysRoleMenuServiceImpl extends ServiceImpl<SysRoleMenuMapper, SysRo
         sysRoleMenu.setMenuId(menuId);
         QueryWrapper<SysRoleMenu> queryWrapper = new QueryWrapper<>(sysRoleMenu);
         SysRoleMenu exist = getOne(queryWrapper);
-        if (exist == null) {
+        if (exist != null) {
             ReportUtil.throwEx("该角色已经拥有该菜单");
         }
 

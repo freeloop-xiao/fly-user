@@ -13,7 +13,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
-
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -22,7 +21,6 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
 
 /**
  * @author free loop
@@ -53,23 +51,11 @@ public class SecurityAuthenticationFilter extends OncePerRequestFilter {
 
 
     private UsernamePasswordAuthenticationToken getAuthentication(DecodedJWT jwt) {
-
-        Long userId = jwt.getClaim(TokenUtil.USER_ID).asLong();
-        String roleCodes = jwt.getClaim(TokenUtil.ROLES).asString();
-        String userType = jwt.getClaim(TokenUtil.USER_TYPE).asString();
-        String tokenType = jwt.getClaim(TokenUtil.TOKEN_TYPE).asString();
-
-        // 检查token类型是否实 accessToken
-        checkTokenType(tokenType);
-        String clientId = jwt.getClaim(TokenUtil.CLIENT_ID).asString();
-        String uid = jwt.getClaim(PublicClaims.JWT_ID).asString();
-        List<GrantedAuthority> authorities = Arrays.stream(roleCodes.split(",")).filter(StringUtils::hasText)
+        AuthInfo authInfo = TokenUtil.parseToken(jwt);
+        List<GrantedAuthority> authorities = Arrays.stream(authInfo.getRoles().split(",")).filter(StringUtils::hasText)
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
-
-        AuthInfo authInfo = AuthInfo.createTokenInfo(userId, userType, tokenType, roleCodes, clientId, uid);
-
-        return new UsernamePasswordAuthenticationToken(userId, authInfo, authorities);
+        return new UsernamePasswordAuthenticationToken(authInfo.getUserId(), authInfo, authorities);
     }
 
 
@@ -79,7 +65,7 @@ public class SecurityAuthenticationFilter extends OncePerRequestFilter {
      * @param tokenType token类型
      */
     public static void checkTokenType(String tokenType) {
-        if (TokenType.ACCESS_TYPE.getType().equals(tokenType)) {
+        if (!TokenType.ACCESS_TYPE.getType().equals(tokenType)) {
             ReportUtil.throwEx("token类型错误！");
         }
     }

@@ -22,6 +22,9 @@ public class ImageVO {
     private String image;
 
 
+    private String code;
+
+
     public ImageVO(String serNo, String image) {
         this.serNo = serNo;
         this.image = image;

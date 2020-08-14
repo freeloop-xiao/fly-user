@@ -25,4 +25,10 @@ public interface SysAdminLoginService {
      */
     TokenVO login(SysAdminLoginRequest request);
 
+    /**
+     * 刷新token
+     * @param refreshToken 刷新token
+     * @return token
+     */
+    TokenVO refresh(String refreshToken);
 }

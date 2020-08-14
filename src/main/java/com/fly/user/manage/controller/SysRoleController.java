@@ -37,7 +37,6 @@ public class SysRoleController extends BaseController {
     @Autowired
     private SysRoleMenuService sysRoleMenuService;
 
-
     /**
      * 添加
      *
@@ -120,7 +119,6 @@ public class SysRoleController extends BaseController {
     public R<Boolean> roleMapMenu(@RequestParam Long roleId, @RequestParam Long menuId) {
         return new R<>(sysRoleMenuService.roleMapMenu(roleId, menuId));
     }
-
 
     @ApiOperation(value = "角色取消菜单", notes = "角色取消菜单")
     @PostMapping("/role-cancel-menu")

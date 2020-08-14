@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.fly.user.common.util.PageUtil;
+import com.fly.user.common.util.ReportUtil;
 import com.fly.user.manage.mapper.SysDeptMapper;
 import com.fly.user.manage.pojo.dto.PageRequest;
 import com.fly.user.manage.pojo.dto.SysDeptSaveRequest;
@@ -34,6 +35,11 @@ public class SysDeptServiceImpl extends ServiceImpl<SysDeptMapper, SysDept> impl
     public boolean add(SysDeptSaveRequest req) {
         SysDept sysDept = new SysDept();
         BeanUtils.copyProperties(req, sysDept);
+        QueryWrapper<SysDept> queryWrapper = new QueryWrapper<>(sysDept);
+        SysDept exist = getOne(queryWrapper);
+        if (exist != null){
+            ReportUtil.throwEx("该部门已经存在");
+        }
         return save(sysDept);
     }
 

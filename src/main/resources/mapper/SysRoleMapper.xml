@@ -28,7 +28,7 @@
         from sys_admin_role
         left join sys_role
         on sys_role.role_id=sys_admin_role.role_id
-        and sys_admin_role.user_id=#{userId}
+        where sys_admin_role.user_id=#{userId}
         and sys_role.del_flag=false
     </select>
 
