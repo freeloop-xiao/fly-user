@@ -24,7 +24,7 @@ import java.lang.reflect.Method;
 @Slf4j
 @Aspect
 @Component
-@Profile({"dev", "test"})
+@Profile({"dev", "test","local"})
 public class WebLogAspect {
     /**
      * 换行符

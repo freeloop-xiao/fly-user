@@ -2,7 +2,9 @@ server:
   port: 8080
 spring:
   profiles:
-    active: dev
+    active: local
+  application:
+    name: fly-user
 # mybatis-plus相关配置
 mybatis-plus:
   # xml扫描，多个目录用逗号或者分号分隔（告诉 Mapper 所对应的 XML 文件位置）
@@ -21,5 +23,8 @@ mybatis-plus:
     # 这个配置会将执行的sql打印出来，在开发或测试的时候可以用
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 logging:
+  level:
+    root: info
+  config: classpath:logback-spring.xml
   file:
-    path: info/
+    path: logs/

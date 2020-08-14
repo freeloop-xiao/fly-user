@@ -21,6 +21,7 @@ repositories {
 
 dependencies {
     implementation 'com.alibaba:fastjson:1.2.68'
+    implementation 'com.fasterxml.jackson.module:jackson-module-kotlin'
     implementation 'com.auth0:java-jwt:3.10.3'
     implementation 'cn.hutool:hutool-all:5.2.1'
     implementation 'mysql:mysql-connector-java:8.0.16'
@@ -32,6 +33,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-aop'
+    implementation 'org.springframework.boot:spring-boot-starter-logging'
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
@@ -56,6 +58,7 @@ task copyConfigFile(type: Copy) {
     // 清除现有的配置目录
     delete "$buildDir\\libs\\config"
     from('src/main/resources/application.yaml',
+            'src/main/resources/application-local.yaml',
             'src/main/resources/application-dev.yaml',
             'src/main/resources/application-test.yaml',
             'src/main/resources/application-prod.yaml')
