@@ -20,10 +20,10 @@ public class SecurityAccessDeniedHandler implements AccessDeniedHandler {
 
     @Override
     public void handle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AccessDeniedException e) throws IOException, ServletException {
-        writeTokenInvalidJSONData(httpServletResponse);
+        writeTokenInvalidJsonData(httpServletResponse);
     }
 
-    private void writeTokenInvalidJSONData(HttpServletResponse response) throws IOException {
+    private void writeTokenInvalidJsonData(HttpServletResponse response) throws IOException {
 
         response.setContentType("application/json; charset=UTF-8");
         response.setHeader("Cache-Control", "no-cache");

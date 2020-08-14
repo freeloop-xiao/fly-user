@@ -19,7 +19,7 @@ public interface SysMenuService extends IService<SysMenu> {
 
     /**
      * 添加菜单
-     * @param menuDTO 菜单dto
+     * @param request 菜单请求对象
      * @return true/false
      */
     boolean addSysMenu(SysMenuSaveRequest request);
@@ -34,6 +34,7 @@ public interface SysMenuService extends IService<SysMenu> {
     /**
      * 编辑菜单
      * @param sysMenu 系统菜单
+     * @return true/false
      */
     boolean editSysMenu(SysMenu sysMenu);
 

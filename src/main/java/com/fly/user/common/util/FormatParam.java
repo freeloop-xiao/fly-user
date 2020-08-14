@@ -35,7 +35,7 @@ public class FormatParam {
      * @return map
      */
     public static Map<Object, Object> toUnderline(Map<Object, Object> source) {
-        Map<Object, Object> dest = new HashMap<>();
+        Map<Object, Object> dest = new HashMap<>(8);
         for (Map.Entry<Object, Object> entry : source.entrySet()) {
             dest.put(toUnderline((String) entry.getKey()), entry.getValue());
         }

@@ -110,20 +110,20 @@ public class SysDeptServiceImpl extends ServiceImpl<SysDeptMapper, SysDept> impl
      * 部门排序
      *
      * @param deptId 部门id
-     * @param deps   部门列表
+     * @param depts   部门列表
      * @return deptVO
      */
-    private List<DeptVO> sort(Long deptId, List<SysDept> deps) {
+    private List<DeptVO> sort(Long deptId, List<SysDept> depts) {
 
-        List<DeptVO> deptVOS = new ArrayList<>();
-        for (SysDept sysDept : deps) {
+        List<DeptVO> deptList = new ArrayList<>();
+        for (SysDept sysDept : depts) {
             DeptVO deptVO = new DeptVO();
             BeanUtils.copyProperties(sysDept, deptVO);
-            deptVOS.add(deptVO);
+            deptList.add(deptVO);
         }
 
-        for (DeptVO deptVO : deptVOS) {
-            List<DeptVO> children = deptVOS.stream().filter(x -> deptVO.getDeptId().equals(x.getParentId()))
+        for (DeptVO deptVO : deptList) {
+            List<DeptVO> children = deptList.stream().filter(x -> deptVO.getDeptId().equals(x.getParentId()))
                     .sorted(Comparator.comparingInt(DeptVO::getOrderNum))
                     .collect(Collectors.toList());
             deptVO.setChildren(children);
@@ -132,9 +132,9 @@ public class SysDeptServiceImpl extends ServiceImpl<SysDeptMapper, SysDept> impl
 
         List<DeptVO> root = null;
         if (deptId == -1) {
-            root = deptVOS.stream().filter(x -> x.getParentId() == -1).collect(Collectors.toList());
+            root = deptList.stream().filter(x -> x.getParentId() == -1).collect(Collectors.toList());
         } else {
-            root = deptVOS.stream().filter(x -> x.getDeptId().equals(deptId)).collect(Collectors.toList());
+            root = deptList.stream().filter(x -> x.getDeptId().equals(deptId)).collect(Collectors.toList());
         }
         return root;
     }

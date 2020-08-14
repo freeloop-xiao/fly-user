@@ -49,7 +49,8 @@ public interface SysDeptService extends IService<SysDept> {
 
     /**
      * 查询系统菜单信息
-     * @param menuId    菜单id
+     *
+     * @param deptId    部门id
      * @return  SysMenu
      */
     SysDept getSysDept(Long deptId);

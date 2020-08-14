@@ -106,16 +106,17 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
     }
 
 
+    @Override
     public List<MenuVO> sort(Long menuId, List<SysMenu> menus) {
 
-        List<MenuVO> menuVOS = new ArrayList<>();
+        List<MenuVO> menuList = new ArrayList<>();
         for (SysMenu menu : menus) {
             MenuVO menuVO = new MenuVO();
             BeanUtils.copyProperties(menu, menuVO);
-            menuVOS.add(menuVO);
+            menuList.add(menuVO);
         }
-        for (MenuVO menuVO : menuVOS) {
-            List<MenuVO> children = menuVOS.stream().filter(x -> menuVO.getMenuId().equals(x.getParentId()))
+        for (MenuVO menuVO : menuList) {
+            List<MenuVO> children = menuList.stream().filter(x -> menuVO.getMenuId().equals(x.getParentId()))
                     .sorted(Comparator.comparingInt(MenuVO::getSort))
                     .collect(Collectors.toList());
             menuVO.setChildren(children);
@@ -124,9 +125,9 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
 
         List<MenuVO> root = null;
         if (menuId == -1) {
-            root = menuVOS.stream().filter(x -> x.getParentId() == -1).collect(Collectors.toList());
+            root = menuList.stream().filter(x -> x.getParentId() == -1).collect(Collectors.toList());
         } else {
-            root = menuVOS.stream().filter(x -> x.getMenuId().equals(menuId)).collect(Collectors.toList());
+            root = menuList.stream().filter(x -> x.getMenuId().equals(menuId)).collect(Collectors.toList());
         }
         return root;
     }

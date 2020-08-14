@@ -24,10 +24,10 @@ public class TokenAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
-        writeTokenInvalidJSONData(response);
+        writeTokenInvalidJsonData(response);
     }
 
-    private void writeTokenInvalidJSONData(HttpServletResponse response) throws IOException {
+    private void writeTokenInvalidJsonData(HttpServletResponse response) throws IOException {
         response.setContentType("application/json; charset=UTF-8");
         response.setHeader("Cache-Control", "no-cache");
         response.setCharacterEncoding("UTF-8");

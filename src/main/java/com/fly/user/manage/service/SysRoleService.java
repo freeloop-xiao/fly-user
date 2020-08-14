@@ -41,7 +41,8 @@ public interface SysRoleService extends IService<SysRole> {
 
     /**
      * 分页查询
-     * @param params 分页参数
+     *
+     * @param request 分页参数
      * @return page
      */
     Page<SysRole> page(PageRequest request);

@@ -22,8 +22,10 @@ import java.util.List;
 public interface SysAdminService extends IService<SysAdmin> {
 
     /**
+     * 添加管理员
+     *
      * @param request request
-     * @return
+     * @return  true/false
      */
     boolean sysAdminAdd(SysAdminSaveRequest request);
 

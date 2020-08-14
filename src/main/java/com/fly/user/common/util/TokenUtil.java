@@ -71,7 +71,7 @@ public class TokenUtil {
         //秘钥及加密算法
         Algorithm algorithm = Algorithm.HMAC256(SECRET);
         //设置头部信息
-        Map<String, Object> header = new HashMap<>();
+        Map<String, Object> header = new HashMap<>(8);
         header.put(PublicClaims.TYPE, "JWT");
         header.put(PublicClaims.ALGORITHM, "HS256");
         return JWT.create()

@@ -88,16 +88,16 @@ public class SysRoleMenuServiceImpl extends ServiceImpl<SysRoleMenuMapper, SysRo
 
     private List<MenuVO> listToListTree(List<SysMenu> sysMenus) {
 
-        List<MenuVO> menuVOS = sysMenus.stream().map(x -> {
+        List<MenuVO> menuList = sysMenus.stream().map(x -> {
             MenuVO menuVO = new MenuVO();
             BeanUtils.copyProperties(x, menuVO);
             return menuVO;
         }).collect(Collectors.toList());
-        for (MenuVO menuVO : menuVOS) {
-            List<MenuVO> children = menuVOS.stream().filter(x -> x.getParentId().equals(menuVO.getMenuId())).collect(Collectors.toList());
+        for (MenuVO menuVO : menuList) {
+            List<MenuVO> children = menuList.stream().filter(x -> x.getParentId().equals(menuVO.getMenuId())).collect(Collectors.toList());
             menuVO.setChildren(children);
         }
-        return menuVOS.stream().filter(x -> x.getParentId() == -1).collect(Collectors.toList());
+        return menuList.stream().filter(x -> x.getParentId() == -1).collect(Collectors.toList());
     }
 
 }

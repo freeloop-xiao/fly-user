@@ -147,15 +147,15 @@ public class SysAdminServiceImpl extends ServiceImpl<SysAdminMapper, SysAdmin> i
         }
 
         // 去重
-        Map<Long, SysMenu> map = new HashMap<>();
+        Map<Long, SysMenu> map = new HashMap<>(8);
         for (SysMenu sysMenu : sysMenus) {
             if (!map.containsKey(sysMenu.getMenuId())) {
                 map.put(sysMenu.getMenuId(), sysMenu);
             }
         }
         sysMenus = new ArrayList<>(map.values());
-        List<MenuVO> menuVOS = sysMenuService.sort(-1L, sysMenus);
-        sysAdminVO.setMenus(menuVOS);
+        List<MenuVO> menuVOs = sysMenuService.sort(-1L, sysMenus);
+        sysAdminVO.setMenus(menuVOs);
 
         return sysAdminVO;
     }
