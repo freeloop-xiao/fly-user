@@ -109,7 +109,7 @@ public class SysAdminController extends BaseController {
     /**
      * 分页查询信息
      *
-     * @param params 分页对象
+     * @param request 分页对象
      * @return 分页对象
      */
     @ApiOperation(value = "分页查询管理员", notes = "分页查询管理员")

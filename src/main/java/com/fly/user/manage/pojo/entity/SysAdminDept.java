@@ -1,4 +1,4 @@
-package com.fly.user.manage.entity;
+package com.fly.user.manage.pojo.entity;
 
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import java.io.Serializable;

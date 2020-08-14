@@ -14,6 +14,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
 import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -53,7 +54,7 @@ public class SysRoleController extends BaseController {
     /**
      * 删除
      *
-     * @param roleId ID
+     * @param roleId roleId
      * @return success/false
      */
     @ApiOperation(value = "删除角色", notes = "删除角色")
@@ -80,7 +81,7 @@ public class SysRoleController extends BaseController {
     /**
      * 通过ID查询
      *
-     * @param id ID
+     * @param roleId roleId
      * @return SysRole
      */
     @ApiOperation(value = "查询角色信息", notes = "查询角色信息")
@@ -94,7 +95,7 @@ public class SysRoleController extends BaseController {
     /**
      * 分页查询信息
      *
-     * @param params 分页对象
+     * @param request 分页对象
      * @return 分页对象
      */
     @ApiOperation(value = "分页获取", notes = "分页获取")
@@ -104,7 +105,12 @@ public class SysRoleController extends BaseController {
         return new R<>((sysRoleService.page(request)));
     }
 
-
+    /**
+     * 角色查询菜单树
+     *
+     * @param roleId 角色id
+     * @return List<MenuVO>
+     */
     @ApiOperation(value = "角色查询菜单树", notes = "角色查询菜单树")
     @PostMapping("/menus/{roleId}")
     @PreAuthorize(RoleUtil.ROLE_SUPER)
@@ -113,6 +119,13 @@ public class SysRoleController extends BaseController {
     }
 
 
+    /**
+     * 角色添加菜单
+     *
+     * @param roleId 角色id
+     * @param menuId 菜单id
+     * @return boolean
+     */
     @ApiOperation(value = "角色添加菜单", notes = "角色添加菜单")
     @PostMapping("/role-map-menu")
     @PreAuthorize(RoleUtil.ROLE_SUPER)
@@ -120,6 +133,13 @@ public class SysRoleController extends BaseController {
         return new R<>(sysRoleMenuService.roleMapMenu(roleId, menuId));
     }
 
+    /**
+     * 角色取消菜单
+     *
+     * @param roleId 角色id
+     * @param menuId 菜单id
+     * @return boolean
+     */
     @ApiOperation(value = "角色取消菜单", notes = "角色取消菜单")
     @PostMapping("/role-cancel-menu")
     @PreAuthorize(RoleUtil.ROLE_SUPER)

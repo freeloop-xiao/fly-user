@@ -1,6 +1,5 @@
 package com.fly.user.common.filter;
 
-import com.auth0.jwt.impl.PublicClaims;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fly.user.common.dto.AuthInfo;
 import com.fly.user.common.enums.ResponseCode;
@@ -13,6 +12,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
+
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -41,6 +41,7 @@ public class SecurityAuthenticationFilter extends OncePerRequestFilter {
             if (jwt == null) {
                 ReportUtil.throwEx(ResponseCode.TOKEN_INVALID.getCode(), ResponseCode.TOKEN_INVALID.getMsg());
             }
+
             SecurityContextHolder.getContext().setAuthentication(getAuthentication(jwt));
         }
         chain.doFilter(request, response);
@@ -51,7 +52,11 @@ public class SecurityAuthenticationFilter extends OncePerRequestFilter {
 
 
     private UsernamePasswordAuthenticationToken getAuthentication(DecodedJWT jwt) {
+
         AuthInfo authInfo = TokenUtil.parseToken(jwt);
+        // 检查token类型
+        checkTokenType(authInfo.getTokenType());
+
         List<GrantedAuthority> authorities = Arrays.stream(authInfo.getRoles().split(",")).filter(StringUtils::hasText)
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());

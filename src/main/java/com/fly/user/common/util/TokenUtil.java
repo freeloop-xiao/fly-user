@@ -105,6 +105,12 @@ public class TokenUtil {
         return AuthInfo.createTokenInfo(userId, userType, tokenType, roleCodes, clientId, uid);
     }
 
+    /**
+     * 验证token
+     *
+     * @param token token
+     * @return DecodedJWT
+     */
     public static DecodedJWT verify(String token) {
         try {
             Algorithm algorithm = Algorithm.HMAC256(SECRET);

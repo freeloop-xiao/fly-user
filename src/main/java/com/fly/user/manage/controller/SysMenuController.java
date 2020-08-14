@@ -34,6 +34,7 @@ public class SysMenuController extends BaseController{
 
     /**
      * 添加菜单
+     *
      * @param  sysMenuSaveRequest  实体
      * @return success/false
      */
@@ -47,7 +48,8 @@ public class SysMenuController extends BaseController{
 
     /**
      * 删除
-     * @param menuId menuId
+     *
+     * @param menuId 菜单id
      * @return success/false
      */
     @ApiOperation(value = "删除菜单", notes = "删除菜单")
@@ -59,6 +61,7 @@ public class SysMenuController extends BaseController{
 
     /**
      * 修改菜单
+     *
      * @param  sysMenu  实体
      * @return success/false
      */
@@ -73,7 +76,7 @@ public class SysMenuController extends BaseController{
     /**
     * 获取菜单详情
     *
-    * @param menuId ID
+    * @param menuId 菜单id
     * @return SysMenu
     */
     @ApiOperation(value = "获取菜单详情", notes = "获取菜单详情")
@@ -83,6 +86,12 @@ public class SysMenuController extends BaseController{
         return new R<>(sysMenuService.getById(menuId));
     }
 
+    /**
+     * 菜单列表树查询
+     *
+     * @param menuId  菜单id
+     * @return  R
+     */
     @ApiOperation(value = "菜单列表树查询", notes = "菜单列表树查询")
     @PostMapping("/list/{menuId}")
     @PreAuthorize(RoleUtil.ROLE_SUPER)

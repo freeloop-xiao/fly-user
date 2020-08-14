@@ -29,19 +29,35 @@ public class SysAdminLoginController extends BaseController {
     @Autowired
     private SysAdminLoginService sysAdminLoginService;
 
+    /**
+     * 获取图形验证码
+     *
+     * @return picture
+     */
     @ApiOperation(value = "获取图形验证码", notes = "获取图形验证码")
     @GetMapping("/captcha")
     public R<ImageVO> captcha() {
         return new R<>(sysAdminLoginService.captcha());
     }
 
-
+    /**
+     * 管理员登陆
+     *
+     * @param request 登陆信息
+     * @return token
+     */
     @ApiOperation(value = "管理员登陆", notes = "管理员登陆")
     @PostMapping("/login")
     public R<TokenVO> login(@Valid @RequestBody SysAdminLoginRequest request) {
         return new R<>(sysAdminLoginService.login(request));
     }
 
+    /**
+     * 管理员token刷新
+     *
+     * @param refreshToken refreshToken
+     * @return token
+     */
     @ApiOperation(value = "管理员刷新token", notes = "管理员刷新token")
     @PostMapping("/refresh")
     public R<TokenVO> refresh(@RequestParam String refreshToken) {

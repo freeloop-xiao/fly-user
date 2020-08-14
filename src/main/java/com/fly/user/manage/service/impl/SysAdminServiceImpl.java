@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.fly.user.common.util.PageUtil;
 import com.fly.user.common.util.ReportUtil;
-import com.fly.user.manage.entity.SysAdminDept;
+import com.fly.user.manage.pojo.entity.SysAdminDept;
 import com.fly.user.manage.pojo.dto.PageRequest;
 import com.fly.user.manage.pojo.dto.SysAdminSaveRequest;
 import com.fly.user.manage.pojo.dto.SysAdminUpdateRequest;
@@ -27,7 +27,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * <p>

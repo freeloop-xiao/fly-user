@@ -1,6 +1,6 @@
 package com.fly.user.manage.service.impl;
 
-import com.fly.user.manage.entity.SysAdminDept;
+import com.fly.user.manage.pojo.entity.SysAdminDept;
 import com.fly.user.manage.mapper.SysAdminDeptMapper;
 import com.fly.user.manage.service.SysAdminDeptService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;

@@ -1,6 +1,6 @@
 package com.fly.user.manage.mapper;
 
-import com.fly.user.manage.entity.SysAdminDept;
+import com.fly.user.manage.pojo.entity.SysAdminDept;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
