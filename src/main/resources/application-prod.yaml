@@ -31,3 +31,9 @@ spring:
     timeout: 1000
 swagger:
   show: false
+logging:
+  level:
+    root: info
+  config: classpath:logback-spring.xml
+  file:
+    path: logs/
