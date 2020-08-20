@@ -8,12 +8,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @version 1.0
  * @since 2020/7/29 10:03
  */
-
 @SpringBootApplication
-public class FlyAdminApplication {
+public class FlyUserApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(FlyAdminApplication.class, args);
+        SpringApplication.run(FlyUserApplication.class, args);
     }
 
 }

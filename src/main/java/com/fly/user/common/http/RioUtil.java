@@ -32,7 +32,7 @@ public class RioUtil {
      * @param token  rio - token
      * @return builder
      */
-    private static Map<String, String> createRioHeaders(String passId, String token) {
+    public static Map<String, String> createRioHeaders(String passId, String token) {
         String nonce = IdUtil.fastSimpleUUID().substring(0, 16);
         String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
         Digester sha256 = new Digester(DigestAlgorithm.SHA256);

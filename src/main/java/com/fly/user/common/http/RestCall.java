@@ -1,6 +1,7 @@
 package com.fly.user.common.http;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.Map;
@@ -13,6 +14,7 @@ import java.util.Map;
  * @since 2020/6/18 11:11
  */
 @Slf4j
+@Component
 public class RestCall {
 
 

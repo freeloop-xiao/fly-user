@@ -35,8 +35,7 @@ public class WebLogAspect {
      * 以自定义 @WebLog 注解为切点
      */
     @Pointcut("@annotation(io.swagger.annotations.ApiOperation)")
-    public void webLog() {
-    }
+    public void webLog() {}
 
 
     /**
@@ -49,6 +48,7 @@ public class WebLogAspect {
     public void doBefore(JoinPoint joinPoint) throws Throwable {
         // 开始打印请求日志
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        assert attributes != null;
         HttpServletRequest request = attributes.getRequest();
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

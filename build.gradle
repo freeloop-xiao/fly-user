@@ -20,6 +20,7 @@ repositories {
 }
 
 dependencies {
+    implementation 'com.squareup.okhttp3:okhttp:3.11.0'
     implementation 'com.alibaba:fastjson:1.2.68'
     implementation 'com.fasterxml.jackson.module:jackson-module-kotlin'
     implementation 'com.auth0:java-jwt:3.10.3'
